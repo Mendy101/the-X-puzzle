@@ -87,9 +87,8 @@ def write_output_file(path, filename='output.txt'):
     with open(filename, 'w') as f:
         f.write(path)
 
-
-def bfs(start_node):
-    # אלגוריתם חיפוש BFS – מוצא את הפתרון הקצר ביותר
+# BFS Search Algorithm
+def bfs(start_node): 
     queue = deque([start_node])  # תור של מצבים לבדיקה
     visited = set()              # סט של מצבים שכבר ביקרנו בהם
 
@@ -108,6 +107,28 @@ def bfs(start_node):
                 queue.append(neighbor)
 
     return "No solution"
+
+# DFS Search Algorithm
+def dfs (start_node):
+    states_stack = [start_node]
+    closed_list = set()
+
+    while states_stack:
+        current = states_stack.pop()
+        if current.is_goal():
+            return reconstruct_path(current)
+        closed_list.add(current)
+
+        # Add reverse neighbors to preserve order U>D>L>R
+        neighbors = current.get_neighbors()
+        move_order = {'U': 0, 'D': 1, 'L': 2, 'R': 3}
+        neighbors.sort(key=lambda node: move_order[node.move])
+        
+        for neighbor in reversed(neighbors):
+            if neighbor not in closed_list and neighbor not in states_stack:
+                states_stack.append(neighbor)
+    
+    return "No solution" # if there is no solution at all
 
 
 def reconstruct_path(node):
