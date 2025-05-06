@@ -108,16 +108,10 @@ def main():
 
     if path:
         print("solution found:", path)
-        write_output_file(path)
-
-    # elif algorithm == 5:  # DFS
-    #     print ("run DFS...")
-    #     path = dfs(start_node)
-    #     print("solution founded:", path)
-    #     write_output_file(path)
-        
+        write_output_file(path)   
     else:
         print("no solution found.")
+        
 
 if __name__ == "__main__":
     main()
