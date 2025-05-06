@@ -16,18 +16,27 @@ class PuzzleNode:
         self.cost = cost                   
         self.zero_index = self.board.index(0)  
 
+
     def __eq__(self, other):
         return self.board == other.board
+
 
     def __hash__(self):
         return hash(tuple(self.board))
 
+
     def __str__(self):
         return str(self.board)
+
+
+    def __lt__(self, other):
+        return self.board < other.board 
+
 
     def is_goal(self):
         goal = list(range(1, self.size * self.size)) + [0]
         return self.board == goal
+
 
     def get_neighbors(self):
         neighbors = []
@@ -61,20 +70,20 @@ class PuzzleNode:
 
         return neighbors
 
+
     def display(self):
         for i in range(0, len(self.board), self.size):
             row = self.board[i:i + self.size]
             print(' '.join(str(num).rjust(2) for num in row))
         print()
 
+
 def main():
     algorithm, size, start_state = read_input_file()
     start_node = PuzzleNode(start_state, size)
 
-    print("input")
     print("algorithm:", algorithm)
     print("board size:", size)
-    print("start state:")
     start_node.display()
     
     path = None
@@ -101,11 +110,11 @@ def main():
         print("solution found:", path)
         write_output_file(path)
 
-    elif algorithm == 5:  # DFS
-        print ("run DFS...")
-        path = dfs(start_node)
-         print("sloution founded:", path)
-        write_output_file(path)
+    # elif algorithm == 5:  # DFS
+    #     print ("run DFS...")
+    #     path = dfs(start_node)
+    #     print("solution founded:", path)
+    #     write_output_file(path)
         
     else:
         print("no solution found.")
