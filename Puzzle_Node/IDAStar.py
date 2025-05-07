@@ -1,14 +1,4 @@
-from utils import reconstruct_path
-def manhattan_distance(node):
-    distance = 0
-    for i in range(len(node.board)):
-        if node.board[i] != 0:  
-            goal_pos = node.board[i] - 1
-            current_row, current_col = divmod(i, node.size)
-            goal_row, goal_col = divmod(goal_pos, node.size)
-            distance += abs(current_row - goal_row) + abs(current_col - goal_col)
-    return distance
-
+from utils import reconstruct_path, manhattan_distance
 
 
 def ida_star(start_node):
@@ -26,6 +16,7 @@ def ida_star(start_node):
             return None
         
         bound = result
+
 
 def search(node, g, bound, visited):
     f = g + manhattan_distance(node)
