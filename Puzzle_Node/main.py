@@ -17,14 +17,6 @@ class PuzzleNode:
         self.zero_index = self.board.index(0)  
 
 
-    def __eq__(self, other):
-        return self.board == other.board
-
-
-    def __hash__(self):
-        return hash(tuple(self.board))
-
-
     def __str__(self):
         return str(self.board)
 
