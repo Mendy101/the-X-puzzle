@@ -2,7 +2,6 @@ from utils import reconstruct_path, manhattan_distance
 
 
 def ida_star(start_node):
-
     bound = manhattan_distance(start_node)
     
     while True:
@@ -32,13 +31,11 @@ def search(node, g, bound, visited):
     for neighbor in node.get_neighbors():
         neighbor_hash = tuple(neighbor.board)
 
-        if neighbor_hash in visited:
-            continue
-
-        result = search(neighbor, g + 1, bound, visited)
-        if isinstance(result, str):
-            return result
-        min_bound = min(min_bound, result)
+        if neighbor_hash not in visited:
+            result = search(neighbor, g + 1, bound, visited)
+            if isinstance(result, str):
+                return result
+            min_bound = min(min_bound, result)
 
     visited.remove(state_hash)  
     return min_bound

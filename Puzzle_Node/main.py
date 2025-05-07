@@ -17,7 +17,6 @@ class PuzzleNode:
         self.zero_index = self.board.index(0)  
 
 
-
     def __str__(self):
         return str(self.board)
 
