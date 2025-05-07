@@ -20,6 +20,18 @@ def read_input_file():
     return algorithm, size, start_state
 
 
+def manhattan_distance(node):
+    distance = 0
+    for i in range(len(node.board)):
+        if node.board[i] != 0:  
+            goal_pos = node.board[i] - 1
+            current_row, current_col = divmod(i, node.size)
+            goal_row, goal_col = divmod(goal_pos, node.size)
+            distance += abs(current_row - goal_row) + abs(current_col - goal_col)
+
+    return distance
+
+
 def write_output_file(path):
     base_path = os.path.dirname(os.path.abspath(__file__))
     filename = os.path.join(base_path, 'Files', 'output.txt')
