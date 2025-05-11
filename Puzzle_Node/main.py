@@ -5,7 +5,6 @@ from IDAStar import ida_star
 from IDS import ids
 from utils import read_input_file, write_output_file
 
-
 class PuzzleNode:
     def __init__(self, board, size, parent=None, move=None, depth=0, cost=0):
         self.board = board                  
